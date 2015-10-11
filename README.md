@@ -7,3 +7,4 @@ A little grails demo app using GBIF services
 * git clone this repo
 * cd gbif-demo
 * grails run-app
+* Look at http://localhost:8080/gbif-demo

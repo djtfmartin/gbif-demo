@@ -6,6 +6,8 @@ import groovy.json.JsonSlurper
 @Transactional
 class GbifService {
 
+    def grailsApplication
+
     def serviceMethod() {}
 
     def getOccurrenceCount(){
@@ -22,8 +24,9 @@ class GbifService {
 
     def getCountryCounts(){
 
+        log.info("Loading country counts")
         def js = new JsonSlurper()
-        def countryJson = js.parse(new URL("http://api.gbif.org/v1/enumeration/country"))
+        def countryJson = js.parse(new URL("${grailsApplication.config.gbifApiUrl}/enumeration/country"))
         def countryCodes = countryJson.collect { it.iso2 }
 
         def counts = []
@@ -31,14 +34,14 @@ class GbifService {
         countryCodes.each {
             counts << [
                     "hc-key": it.toLowerCase(),
-                    value: new URL("http://api.gbif.org/v1/occurrence/count?country=${it}&isGeoreferenced=true&basisOfRecord=OBSERVATION").text.toInteger()
+                    value: new URL("${grailsApplication.config.gbifApiUrl}/occurrence/count?country=${it}&isGeoreferenced=true&basisOfRecord=OBSERVATION").text.toInteger()
             ]
         }
         counts
     }
 
     private def getCount(entity){
-        def text = new URL("http://api.gbif.org/v1/${entity}/search?limit=0").text
+        def text = new URL("${grailsApplication.config.gbifApiUrl}/${entity}/search?limit=0").text
         def js = new JsonSlurper()
         js.parseText(text).count
     }

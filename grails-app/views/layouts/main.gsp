@@ -9,20 +9,12 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<title><g:layoutTitle default="Grails"/> | GBIF Dashboard</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 		<link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon">
-		<link rel="apple-touch-icon" href="${assetPath(src: 'apple-touch-icon.png')}">
-		<link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}">
-
-		<asset:javascript src="jquery"/>
-		<asset:stylesheet src="bootstrap.css"/>
-		<asset:javascript src="bootstrap.js"/>
-
+		<asset:stylesheet src="application.css"/>
 		<g:layoutHead/>
 	</head>
 	<body>
-		<nav class="navbar navbar-inverse ">
-			<div class="container">
+		<nav class="navbar navbar-default navbar-fixed-top">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 						<span class="sr-only">Toggle navigation</span>
@@ -32,21 +24,20 @@
 					</button>
 					<a class="navbar-brand" href="#">${grailsApplication.config.projectName}</a>
 				</div>
-			</div>
 		</nav>
-	<div class="container">
-		<header>
-			<h1>Dashboard</h1>
-		</header>
 
-		<div id="content">
-		<g:layoutBody/>
+		<!-- Begin page content -->
+		<div class="container">
+			<div id="content">
+			<g:layoutBody/>
+			</div>
 		</div>
 
-		<footer>
-			<p>&copy; GBIF 2015</p>
+		<footer class="footer">
+			<div class="container">
+				<p class="text-muted">GBIF</p>
+			</div>
 		</footer>
-
-		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 	</body>
+	<asset:javascript src="application.js"/>
 </html>

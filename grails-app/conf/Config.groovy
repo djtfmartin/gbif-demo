@@ -60,6 +60,7 @@ grails {
 }
 
 projectName = "GBIF demo"
+gbifApiUrl = "http://api.gbif.org/v1"
 
 grails.converters.encoding = "UTF-8"
 // scaffolding templates configuration

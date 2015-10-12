@@ -33,8 +33,8 @@ class GbifService {
         //this is naive, but for demo purposes...
         countryCodes.each {
             counts << [
-                    "hc-key": it.toLowerCase(),
-                    value: new URL("${grailsApplication.config.gbifApiUrl}/occurrence/count?country=${it}&isGeoreferenced=true&basisOfRecord=OBSERVATION").text.toInteger()
+                "hc-key": it.toLowerCase(),
+                value: new URL("${grailsApplication.config.gbifApiUrl}/occurrence/count?country=${it}").text.toInteger()
             ]
         }
         counts
